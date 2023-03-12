@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .regular)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .regular)
         button.layer.masksToBounds = true
         return button
     }()
@@ -49,6 +49,7 @@ class LoginViewController: UIViewController {
         view.backgroundColor = UIColor(named: "blue")
         setupLayout()
         setupConstraints()
+        cofigureButton()
     }
 }
 
@@ -75,5 +76,14 @@ extension LoginViewController {
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 48)
         ])
+    }
+
+    private func cofigureButton() {
+        loginButton.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
+    }
+
+    @objc func loginButtonAction() {
+        let chatVC = ChatViewController()
+        present(chatVC, animated: true)
     }
 }

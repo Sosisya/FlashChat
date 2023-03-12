@@ -14,6 +14,8 @@
 		8ECF035E29BE105600A21A9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ECF035C29BE105600A21A9D /* LaunchScreen.storyboard */; };
 		8ECF036629BE186200A21A9D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF036529BE186200A21A9D /* LoginViewController.swift */; };
 		8ECF036829BE1B9F00A21A9D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF036729BE1B9F00A21A9D /* RegisterViewController.swift */; };
+		8ECF037229BE23CD00A21A9D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF037129BE23CD00A21A9D /* ChatViewController.swift */; };
+		8ECF037429BE27F200A21A9D /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF037329BE27F200A21A9D /* MessageTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		8ECF035F29BE105600A21A9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8ECF036529BE186200A21A9D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8ECF036729BE1B9F00A21A9D /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		8ECF037129BE23CD00A21A9D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		8ECF037329BE27F200A21A9D /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +64,56 @@
 			children = (
 				8ECF035129BE105500A21A9D /* AppDelegate.swift */,
 				8ECF035329BE105500A21A9D /* SceneDelegate.swift */,
-				8ECF035529BE105500A21A9D /* WelcomeViewController.swift */,
-				8ECF036529BE186200A21A9D /* LoginViewController.swift */,
-				8ECF036729BE1B9F00A21A9D /* RegisterViewController.swift */,
+				8ECF036C29BE236F00A21A9D /* Welcome */,
+				8ECF036D29BE237800A21A9D /* Login */,
+				8ECF037029BE238C00A21A9D /* Register */,
+				8ECF036E29BE237D00A21A9D /* Chat */,
 				8ECF035A29BE105600A21A9D /* Assets.xcassets */,
 				8ECF035C29BE105600A21A9D /* LaunchScreen.storyboard */,
 				8ECF035F29BE105600A21A9D /* Info.plist */,
 			);
 			path = FlashChat;
+			sourceTree = "<group>";
+		};
+		8ECF036C29BE236F00A21A9D /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				8ECF035529BE105500A21A9D /* WelcomeViewController.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		8ECF036D29BE237800A21A9D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8ECF036529BE186200A21A9D /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8ECF036E29BE237D00A21A9D /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				8ECF037129BE23CD00A21A9D /* ChatViewController.swift */,
+				8ECF037529BE27FB00A21A9D /* View */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		8ECF037029BE238C00A21A9D /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				8ECF036729BE1B9F00A21A9D /* RegisterViewController.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		8ECF037529BE27FB00A21A9D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8ECF037329BE27F200A21A9D /* MessageTableViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,10 +186,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ECF037429BE27F200A21A9D /* MessageTableViewCell.swift in Sources */,
 				8ECF036629BE186200A21A9D /* LoginViewController.swift in Sources */,
 				8ECF036829BE1B9F00A21A9D /* RegisterViewController.swift in Sources */,
 				8ECF035629BE105500A21A9D /* WelcomeViewController.swift in Sources */,
 				8ECF035229BE105500A21A9D /* AppDelegate.swift in Sources */,
+				8ECF037229BE23CD00A21A9D /* ChatViewController.swift in Sources */,
 				8ECF035429BE105500A21A9D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -33,22 +33,22 @@ class RegisterViewController: UIViewController {
          return textfield
       }()
 
-     private let loginButton: UIButton = {
+     private let registerButton: UIButton = {
          let button = UIButton()
          button.translatesAutoresizingMaskIntoConstraints = false
          button.setTitle("Register", for: .normal)
          button.setTitleColor(UIColor(named: "blue"), for: .normal)
-         button.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .regular)
+         button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .regular)
          button.layer.masksToBounds = true
          return button
      }()
-
 
      override func viewDidLoad() {
          super.viewDidLoad()
          view.backgroundColor = UIColor(named: "lightBlue")
          setupLayout()
          setupConstraints()
+         cofigureButton()
      }
  }
 
@@ -56,7 +56,7 @@ class RegisterViewController: UIViewController {
      private func setupLayout() {
          view.addSubview(emailTextField)
          view.addSubview(paswordTextField)
-         view.addSubview(loginButton)
+         view.addSubview(registerButton)
      }
 
      private func setupConstraints() {
@@ -71,9 +71,17 @@ class RegisterViewController: UIViewController {
              paswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
              paswordTextField.heightAnchor.constraint(equalToConstant: 48),
 
-             loginButton.topAnchor.constraint(equalTo: paswordTextField.bottomAnchor, constant: 16),
-             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-             loginButton.heightAnchor.constraint(equalToConstant: 48)
+             registerButton.topAnchor.constraint(equalTo: paswordTextField.bottomAnchor, constant: 16),
+             registerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+             registerButton.heightAnchor.constraint(equalToConstant: 48)
          ])
+     }
+
+     private func cofigureButton() {
+         registerButton.addTarget(self, action: #selector(registerButtonAction), for: .touchUpInside)
+     }
+
+     @objc func registerButtonAction() {
+         print("register")
      }
  }
