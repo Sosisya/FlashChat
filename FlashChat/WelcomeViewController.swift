@@ -2,7 +2,7 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
 
-    let welcomeTitleLabel: UILabel = {
+    private let welcomeTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "⚡️FlashChat"
@@ -12,7 +12,7 @@ class WelcomeViewController: UIViewController {
         return label
     }()
 
-    let registerButton: UIButton = {
+    private let registerButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Register", for: .normal)
@@ -24,7 +24,7 @@ class WelcomeViewController: UIViewController {
         return button
     }()
 
-    let loginButton: UIButton = {
+    private let loginButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Log In", for: .normal)
@@ -41,6 +41,7 @@ class WelcomeViewController: UIViewController {
         view.backgroundColor = .white
         setupLayout()
         setupConstraints()
+        cofigureButton()
     }
 }
 
@@ -52,7 +53,6 @@ extension WelcomeViewController {
     }
 
     private func setupConstraints() {
-
         NSLayoutConstraint.activate([
             welcomeTitleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             welcomeTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -62,12 +62,26 @@ extension WelcomeViewController {
             registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             registerButton.heightAnchor.constraint(equalToConstant: 48),
 
-
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             loginButton.heightAnchor.constraint(equalToConstant: 48)
         ])
+    }
+
+    private func cofigureButton() {
+        loginButton.addTarget(self, action: #selector(openLoginController), for: .touchUpInside)
+        registerButton.addTarget(self, action: #selector(openRegisterController), for: .touchUpInside)
+    }
+
+    @objc func openLoginController() {
+        let loginVC = LoginViewController()
+        present(loginVC, animated: true)
+    }
+
+    @objc func openRegisterController() {
+        let registerVC = RegisterViewController()
+        present(registerVC, animated: true)
     }
 }
 
