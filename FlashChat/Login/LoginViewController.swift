@@ -84,6 +84,6 @@ extension LoginViewController {
 
     @objc func loginButtonAction() {
         let chatVC = ChatViewController()
-        present(chatVC, animated: true)
+        show(chatVC, sender: self)
     }
 }

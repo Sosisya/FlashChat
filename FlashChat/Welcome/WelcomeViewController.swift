@@ -76,12 +76,12 @@ extension WelcomeViewController {
 
     @objc func openLoginController() {
         let loginVC = LoginViewController()
-        present(loginVC, animated: true)
+        show(loginVC, sender: self)
     }
 
     @objc func openRegisterController() {
         let registerVC = RegisterViewController()
-        present(registerVC, animated: true)
+        show(registerVC, sender: self)
     }
 }
 
