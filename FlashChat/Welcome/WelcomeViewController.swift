@@ -1,9 +1,10 @@
 import UIKit
+import CLTypingLabel
 
 class WelcomeViewController: UIViewController {
 
-    private let welcomeTitleLabel: UILabel = {
-        let label = UILabel()
+    private let welcomeTitleLabel: CLTypingLabel = {
+        let label = CLTypingLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "⚡️FlashChat"
         label.font = UIFont.systemFont(ofSize: 50, weight: .black)
@@ -42,7 +43,6 @@ class WelcomeViewController: UIViewController {
         setupLayout()
         setupConstraints()
         cofigureButton()
-        animateWelcomeTitle()
     }
 }
 
@@ -83,19 +83,6 @@ extension WelcomeViewController {
     @objc func openRegisterController() {
         let registerVC = RegisterViewController()
         show(registerVC, sender: self)
-    }
-
-    private func animateWelcomeTitle() {
-        welcomeTitleLabel.text = ""
-        let animateTitle = "⚡️FlashChat"
-        var charIndex = 0.0
-
-        for letter in animateTitle {
-            Timer.scheduledTimer(withTimeInterval: 0.1 * charIndex, repeats: false) { timer in
-                self.welcomeTitleLabel.text?.append(letter)
-            }
-            charIndex += 1
-        }
     }
 }
 
