@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ChatViewController: UIViewController {
 
@@ -58,6 +59,7 @@ class ChatViewController: UIViewController {
         setupConstraints()
         cofigureButton()
         configureTableView()
+        configureNavigationBar()
     }
 }
 
@@ -97,6 +99,22 @@ extension ChatViewController {
         chatTableView.dataSource = self
         chatTableView.separatorStyle = .none
         chatTableView.register(MessageTableViewCell.self, forCellReuseIdentifier: "MessageTableViewCell")
+    }
+
+    private func configureNavigationBar() {
+        let exitBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), style: .plain, target: self, action: #selector(onExitButtonClicked))
+        self.navigationItem.rightBarButtonItem  = exitBarButtonItem
+        navigationItem.hidesBackButton = true
+        title = "⚡️FlashChat"
+    }
+
+    @objc func onExitButtonClicked(_ sender: Any){
+        do {
+          try Auth.auth().signOut()
+            navigationController?.popToRootViewController(animated: true)
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+        }
     }
 
     private func cofigureButton() {

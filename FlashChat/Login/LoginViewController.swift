@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.borderStyle = .none
         textfield.placeholder = "E-mail"
+        textfield.text = "1@2.com"
         textfield.textAlignment = .center
         textfield.layer.masksToBounds = true
         textfield.backgroundColor = .white
@@ -27,6 +28,7 @@ class LoginViewController: UIViewController {
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.borderStyle = .none
         textfield.placeholder = "Password"
+        textfield.text = "123456"
         textfield.textAlignment = .center
         textfield.layer.masksToBounds = true
         textfield.backgroundColor = .white
@@ -85,8 +87,6 @@ extension LoginViewController {
     }
 
     @objc func loginButtonAction() {
-
-
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
