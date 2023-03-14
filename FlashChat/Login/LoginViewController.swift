@@ -6,22 +6,23 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginViewController: UIViewController {
 
-   private let emailTextField: UITextField = {
-       let textfield = UITextField()
-       textfield.translatesAutoresizingMaskIntoConstraints = false
-       textfield.borderStyle = .none
-       textfield.placeholder = "E-mail"
-       textfield.textAlignment = .center
-       textfield.layer.masksToBounds = true
-       textfield.backgroundColor = .white
-       textfield.layer.cornerRadius = 24
-       return textfield
+    private let emailTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.translatesAutoresizingMaskIntoConstraints = false
+        textfield.borderStyle = .none
+        textfield.placeholder = "E-mail"
+        textfield.textAlignment = .center
+        textfield.layer.masksToBounds = true
+        textfield.backgroundColor = .white
+        textfield.layer.cornerRadius = 24
+        return textfield
     }()
 
-    private let paswordTextField: UITextField = {
+    private let passwordTextField: UITextField = {
         let textfield = UITextField()
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.borderStyle = .none
@@ -30,8 +31,9 @@ class LoginViewController: UIViewController {
         textfield.layer.masksToBounds = true
         textfield.backgroundColor = .white
         textfield.layer.cornerRadius = 24
+        textfield.isSecureTextEntry = true
         return textfield
-     }()
+    }()
 
     private let loginButton: UIButton = {
         let button = UIButton()
@@ -56,7 +58,7 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
     private func setupLayout() {
         view.addSubview(emailTextField)
-        view.addSubview(paswordTextField)
+        view.addSubview(passwordTextField)
         view.addSubview(loginButton)
     }
 
@@ -67,12 +69,12 @@ extension LoginViewController {
             emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             emailTextField.heightAnchor.constraint(equalToConstant: 48),
 
-            paswordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 8),
-            paswordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            paswordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            paswordTextField.heightAnchor.constraint(equalToConstant: 48),
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 8),
+            passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 48),
 
-            loginButton.topAnchor.constraint(equalTo: paswordTextField.bottomAnchor, constant: 16),
+            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 48)
         ])
@@ -83,7 +85,17 @@ extension LoginViewController {
     }
 
     @objc func loginButtonAction() {
-        let chatVC = ChatViewController()
-        show(chatVC, sender: self)
+
+
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            if let e = error {
+                print(e.localizedDescription)
+            } else {
+                let chatVC = ChatViewController()
+                self?.show(chatVC, sender: self)
+            }
+        }
     }
 }
