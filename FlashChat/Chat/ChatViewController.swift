@@ -12,11 +12,7 @@ class ChatViewController: UIViewController {
 
     let db = Firestore.firestore()
 
-    var messages: [Messages] = [
-        Messages(sender: "1@2.com", body: "Hi"),
-        Messages(sender: "3@4.com", body: "Hello"),
-        Messages(sender: "1@2.com", body: "How r u?")
-    ]
+    var messages: [Messages] = []
 
     let textFieldView: UIView = {
         let view = UIView()
@@ -68,6 +64,7 @@ class ChatViewController: UIViewController {
         cofigureButton()
         configureTableView()
         configureNavigationBar()
+        loadMessages()
     }
 }
 
@@ -139,6 +136,25 @@ extension ChatViewController {
                 print("There was an issue saving data to firestore \(e)")
             } else {
                 print("Successfully saved data.")
+            }
+        }
+    }
+    func loadMessages() {
+        messages = []
+        db.collection(K.FStore.collectionName).getDocuments { querySnapshot, error in
+            if let e = error {
+                print("There was an issue retrieving data to firestore \(e)")
+            } else {
+                guard let snapshotDocuments = querySnapshot?.documents else { return }
+                for doc in snapshotDocuments {
+                    let data = doc.data()
+                    guard let messageSender = data[K.FStore.senderField] as? String, let messageBody = data[K.FStore.bodyField] as? String else { return }
+                    let newMessage = Messages(sender: messageSender, body: messageBody)
+                    self.messages.append(newMessage)
+                    DispatchQueue.main.async {
+                        self.chatTableView.reloadData()
+                    }
+                }
             }
         }
     }
