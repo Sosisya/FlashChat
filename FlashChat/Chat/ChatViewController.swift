@@ -10,10 +10,12 @@ import Firebase
 
 class ChatViewController: UIViewController {
 
+    let db = Firestore.firestore()
+
     var messages: [Messages] = [
-        Messages(sender: "Luiza", body: "Hi"),
-        Messages(sender: "Alex", body: "Hello"),
-        Messages(sender: "Luiza", body: "How r u?")
+        Messages(sender: "1@2.com", body: "Hi"),
+        Messages(sender: "3@4.com", body: "Hello"),
+        Messages(sender: "1@2.com", body: "How r u?")
     ]
 
     let textFieldView: UIView = {
@@ -116,10 +118,10 @@ extension ChatViewController {
 
     @objc func onExitButtonClicked(_ sender: Any){
         do {
-          try Auth.auth().signOut()
+            try Auth.auth().signOut()
             navigationController?.popToRootViewController(animated: true)
         } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
+            print("Error signing out: %@", signOutError)
         }
     }
 
@@ -128,7 +130,17 @@ extension ChatViewController {
     }
 
     @objc func sendButtonAction() {
-        print("send")
+        guard let message = messageTextField.text, let messageSender = Auth.auth().currentUser?.email else { return }
+        db.collection(K.FStore.collectionName).addDocument(data: [
+            K.FStore.senderField: messageSender,
+            K.FStore.bodyField: message
+        ])  { error in
+            if let e = error {
+                print("There was an issue saving data to firestore \(e)")
+            } else {
+                print("Successfully saved data.")
+            }
+        }
     }
 }
 
@@ -142,5 +154,5 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         cell.messageLabel.text = messages[indexPath.row].body
         cell.selectionStyle = .none
         return cell
-    }  
+    }
 }

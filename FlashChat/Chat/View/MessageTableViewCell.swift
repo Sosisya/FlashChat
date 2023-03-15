@@ -22,7 +22,9 @@ class MessageTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Message"
-        label.textColor = .black
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.numberOfLines = 0
         return label
     }()
 
@@ -30,13 +32,15 @@ class MessageTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(systemName: "person")
+        imageView.tintColor = .white
         return imageView
     }()
 
     let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.alignment = .fill
+        stackView.alignment = .top
         stackView.distribution = .fill
         stackView.axis = .horizontal
         stackView.spacing = 8

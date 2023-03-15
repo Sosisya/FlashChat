@@ -28,4 +28,11 @@ struct K {
         static let emailTextFieldTitle = "E-mail"
         static let passwordTextFieldTitle = "Password"
     }
+
+    struct FStore {
+        static let collectionName = "messages"
+        static let senderField = "sender"
+        static let bodyField = "body"
+        static let dateField = "date"
+    }
 }
