@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2064575906AEEFBAD6264E34 /* Pods_FlashChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EE0AE7E6BABF6EE096F83C2 /* Pods_FlashChat.framework */; };
+		8E06772129C0FAED006367E0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06772029C0FAED006367E0 /* Constants.swift */; };
+		8E06772429C1005C006367E0 /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E06772329C1005C006367E0 /* Messages.swift */; };
 		8ECF035229BE105500A21A9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF035129BE105500A21A9D /* AppDelegate.swift */; };
 		8ECF035429BE105500A21A9D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF035329BE105500A21A9D /* SceneDelegate.swift */; };
 		8ECF035629BE105500A21A9D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF035529BE105500A21A9D /* WelcomeViewController.swift */; };
@@ -26,6 +28,8 @@
 /* Begin PBXFileReference section */
 		175EB3AB6B319919399205A7 /* Pods-FlashChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashChat.debug.xcconfig"; path = "Target Support Files/Pods-FlashChat/Pods-FlashChat.debug.xcconfig"; sourceTree = "<group>"; };
 		36E15B5FF5AADCC213177289 /* Pods-FlashChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlashChat.release.xcconfig"; path = "Target Support Files/Pods-FlashChat/Pods-FlashChat.release.xcconfig"; sourceTree = "<group>"; };
+		8E06772029C0FAED006367E0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8E06772329C1005C006367E0 /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		8ECF034E29BE105500A21A9D /* FlashChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlashChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECF035129BE105500A21A9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ECF035329BE105500A21A9D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +77,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8E06772229C10035006367E0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8E06772329C1005C006367E0 /* Messages.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8ECF034529BE105500A21A9D = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +106,7 @@
 		8ECF035029BE105500A21A9D /* FlashChat */ = {
 			isa = PBXGroup;
 			children = (
+				8E06772229C10035006367E0 /* Models */,
 				8ECF037629BFA55D00A21A9D /* Helpers */,
 				8ECF035129BE105500A21A9D /* AppDelegate.swift */,
 				8ECF035329BE105500A21A9D /* SceneDelegate.swift */,
@@ -154,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				8ECF037729BFA57500A21A9D /* LabelAnimation.swift */,
+				8E06772029C0FAED006367E0 /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -287,7 +301,9 @@
 				8ECF035229BE105500A21A9D /* AppDelegate.swift in Sources */,
 				8ECF037229BE23CD00A21A9D /* ChatViewController.swift in Sources */,
 				8ECF035429BE105500A21A9D /* SceneDelegate.swift in Sources */,
+				8E06772429C1005C006367E0 /* Messages.swift in Sources */,
 				8ECF037829BFA57500A21A9D /* LabelAnimation.swift in Sources */,
+				8E06772129C0FAED006367E0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

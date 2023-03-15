@@ -6,9 +6,9 @@ class WelcomeViewController: UIViewController {
     private let welcomeTitleLabel: CLTypingLabel = {
         let label = CLTypingLabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "⚡️FlashChat"
+        label.text = K.appName
         label.font = UIFont.systemFont(ofSize: 50, weight: .black)
-        label.textColor = UIColor(named: "blue")
+        label.textColor = UIColor(named: K.Colors.blue)
         label.textAlignment = .center
         return label
     }()
@@ -16,10 +16,10 @@ class WelcomeViewController: UIViewController {
     private let registerButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Register", for: .normal)
-        button.setTitleColor(UIColor(named: "blue"), for: .normal)
+        button.setTitle(K.Buttons.registerButtonTitle, for: .normal)
+        button.setTitleColor(UIColor(named: K.Colors.blue), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .regular)
-        button.backgroundColor = UIColor(named: "lightBlue")
+        button.backgroundColor = UIColor(named: K.Colors.lightBlue)
         button.layer.cornerRadius = 24
         button.layer.masksToBounds = true
         return button
@@ -28,10 +28,10 @@ class WelcomeViewController: UIViewController {
     private let loginButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Log In", for: .normal)
+        button.setTitle(K.Buttons.loginButtonTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .regular)
-        button.backgroundColor = UIColor(named: "blue")
+        button.backgroundColor = UIColor(named: K.Colors.blue)
         button.layer.cornerRadius = 24
         button.layer.masksToBounds = true
         return button

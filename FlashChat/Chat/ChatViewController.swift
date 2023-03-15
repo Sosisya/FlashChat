@@ -10,6 +10,12 @@ import Firebase
 
 class ChatViewController: UIViewController {
 
+    var messages: [Messages] = [
+        Messages(sender: "Luiza", body: "Hi"),
+        Messages(sender: "Alex", body: "Hello"),
+        Messages(sender: "Luiza", body: "How r u?")
+    ]
+
     let textFieldView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +37,7 @@ class ChatViewController: UIViewController {
     private let sendButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "paperplane.fill"), for: .normal)
+        button.setImage(UIImage(systemName: K.Images.sendImage), for: .normal)
         button.tintColor = .white
         return button
     }()
@@ -54,7 +60,7 @@ class ChatViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "blue")
+        view.backgroundColor = UIColor(named: K.Colors.blue)
         setupLayout()
         setupConstraints()
         cofigureButton()
@@ -98,14 +104,14 @@ extension ChatViewController {
         chatTableView.delegate = self
         chatTableView.dataSource = self
         chatTableView.separatorStyle = .none
-        chatTableView.register(MessageTableViewCell.self, forCellReuseIdentifier: "MessageTableViewCell")
+        chatTableView.register(MessageTableViewCell.self, forCellReuseIdentifier: K.cellIdentifier)
     }
 
     private func configureNavigationBar() {
-        let exitBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), style: .plain, target: self, action: #selector(onExitButtonClicked))
+        let exitBarButtonItem = UIBarButtonItem(image: UIImage(systemName: K.Images.exitImage), style: .plain, target: self, action: #selector(onExitButtonClicked))
         self.navigationItem.rightBarButtonItem  = exitBarButtonItem
         navigationItem.hidesBackButton = true
-        title = "⚡️FlashChat"
+        title = K.appName
     }
 
     @objc func onExitButtonClicked(_ sender: Any){
@@ -128,11 +134,13 @@ extension ChatViewController {
 
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return messages.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageTableViewCell", for: indexPath) as! MessageTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageTableViewCell
+        cell.messageLabel.text = messages[indexPath.row].body
+        cell.selectionStyle = .none
         return cell
-    }
+    }  
 }

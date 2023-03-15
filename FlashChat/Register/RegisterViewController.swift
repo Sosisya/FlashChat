@@ -14,7 +14,7 @@ class RegisterViewController: UIViewController {
         let textfield = UITextField()
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.borderStyle = .none
-        textfield.placeholder = "E-mail"
+        textfield.placeholder = K.TextFields.emailTextFieldTitle
         textfield.textAlignment = .center
         textfield.layer.masksToBounds = true
         textfield.backgroundColor = .white
@@ -26,7 +26,7 @@ class RegisterViewController: UIViewController {
         let textfield = UITextField()
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.borderStyle = .none
-        textfield.placeholder = "Password"
+        textfield.placeholder = K.TextFields.passwordTextFieldTitle
         textfield.textAlignment = .center
         textfield.layer.masksToBounds = true
         textfield.backgroundColor = .white
@@ -38,8 +38,8 @@ class RegisterViewController: UIViewController {
     private let registerButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Register", for: .normal)
-        button.setTitleColor(UIColor(named: "blue"), for: .normal)
+        button.setTitle(K.Buttons.registerButtonTitle, for: .normal)
+        button.setTitleColor(UIColor(named: K.Colors.blue), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .regular)
         button.layer.masksToBounds = true
         return button
@@ -47,7 +47,7 @@ class RegisterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "lightBlue")
+        view.backgroundColor = UIColor(named: K.Colors.lightBlue)
         setupLayout()
         setupConstraints()
         cofigureButton()

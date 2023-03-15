@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
         let textfield = UITextField()
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.borderStyle = .none
-        textfield.placeholder = "E-mail"
+        textfield.placeholder = K.TextFields.emailTextFieldTitle
         textfield.text = "1@2.com"
         textfield.textAlignment = .center
         textfield.layer.masksToBounds = true
@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
         let textfield = UITextField()
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.borderStyle = .none
-        textfield.placeholder = "Password"
+        textfield.placeholder = K.TextFields.passwordTextFieldTitle
         textfield.text = "123456"
         textfield.textAlignment = .center
         textfield.layer.masksToBounds = true
@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
     private let loginButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Log In", for: .normal)
+        button.setTitle(K.Buttons.loginButtonTitle, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .regular)
         button.layer.masksToBounds = true
@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "blue")
+        view.backgroundColor = UIColor(named: K.Colors.blue)
         setupLayout()
         setupConstraints()
         cofigureButton()
