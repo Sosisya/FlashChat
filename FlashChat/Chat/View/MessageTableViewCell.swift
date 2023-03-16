@@ -28,11 +28,24 @@ class MessageTableViewCell: UITableViewCell {
         return label
     }()
 
-    let profileImage: UIImageView = {
+    let currentUserProfileImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
-        imageView.image = UIImage(systemName: "person")
+        imageView.image = UIImage(named: K.Images.currentUserProfileImage)
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 20
+        imageView.tintColor = .white
+        return imageView
+    }()
+
+    let userProfileImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: K.Images.otherUserProfileImage)
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 20
         imageView.tintColor = .white
         return imageView
     }()
@@ -67,10 +80,10 @@ extension MessageTableViewCell {
     private func setupLayout() {
         contentView.addSubview(containerView)
         containerView.addSubview(stackView)
+        stackView.addArrangedSubview(userProfileImage)
         stackView.addArrangedSubview(messageLabel)
-        stackView.addArrangedSubview(profileImage)
+        stackView.addArrangedSubview(currentUserProfileImage)
     }
-
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -84,8 +97,11 @@ extension MessageTableViewCell {
             stackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
             stackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
 
-            profileImage.heightAnchor.constraint(equalToConstant: 40),
-            profileImage.widthAnchor.constraint(equalToConstant: 40)
+            currentUserProfileImage.heightAnchor.constraint(equalToConstant: 40),
+            currentUserProfileImage.widthAnchor.constraint(equalToConstant: 40),
+
+            userProfileImage.heightAnchor.constraint(equalToConstant: 40),
+            userProfileImage.widthAnchor.constraint(equalToConstant: 40)
         ])
     }
 }

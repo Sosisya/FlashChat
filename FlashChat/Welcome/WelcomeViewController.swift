@@ -51,6 +51,7 @@ extension WelcomeViewController {
         view.addSubview(welcomeTitleLabel)
         view.addSubview(registerButton)
         view.addSubview(loginButton)
+        navigationController?.navigationBar.tintColor = .white
     }
 
     private func setupConstraints() {

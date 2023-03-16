@@ -108,9 +108,14 @@ extension ChatViewController {
 
     private func configureNavigationBar() {
         let exitBarButtonItem = UIBarButtonItem(image: UIImage(systemName: K.Images.exitImage), style: .plain, target: self, action: #selector(onExitButtonClicked))
-        self.navigationItem.rightBarButtonItem  = exitBarButtonItem
+        navigationItem.rightBarButtonItem = exitBarButtonItem
         navigationItem.hidesBackButton = true
         title = K.appName
+
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithOpaqueBackground()
+        navigationBarAppearance.backgroundColor = UIColor(named: K.Colors.blue)
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
     }
 
     @objc func onExitButtonClicked(_ sender: Any){
@@ -127,20 +132,28 @@ extension ChatViewController {
     }
 
     @objc func sendButtonAction() {
-        guard let message = messageTextField.text, let messageSender = Auth.auth().currentUser?.email else { return }
+        guard let message = messageTextField.text,
+               let messageSender = Auth.auth().currentUser?.email else { return }
         db.collection(K.FStore.collectionName).addDocument(data: [
             K.FStore.senderField: messageSender,
-            K.FStore.bodyField: message
+            K.FStore.bodyField: message,
+            K.FStore.dateField: Date().timeIntervalSince1970
         ])  { error in
             if let e = error {
                 print("There was an issue saving data to firestore \(e)")
             } else {
                 print("Successfully saved data.")
+                DispatchQueue.main.async {
+                    self.messageTextField.text = ""
+                }
             }
         }
     }
+
     func loadMessages() {
-        db.collection(K.FStore.collectionName).addSnapshotListener { querySnapshot, error in
+        db.collection(K.FStore.collectionName)
+            .order(by: K.FStore.dateField)
+            .addSnapshotListener { querySnapshot, error in
 
             self.messages = []
 
@@ -150,11 +163,14 @@ extension ChatViewController {
                 guard let snapshotDocuments = querySnapshot?.documents else { return }
                 for doc in snapshotDocuments {
                     let data = doc.data()
-                    guard let messageSender = data[K.FStore.senderField] as? String, let messageBody = data[K.FStore.bodyField] as? String else { return }
+                    guard let messageSender = data[K.FStore.senderField] as? String,
+                          let messageBody = data[K.FStore.bodyField] as? String else { return }
                     let newMessage = Messages(sender: messageSender, body: messageBody)
                     self.messages.append(newMessage)
                     DispatchQueue.main.async {
                         self.chatTableView.reloadData()
+                        let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+                        self.chatTableView.scrollToRow(at: indexPath, at: .top, animated: true)
                     }
                 }
             }
@@ -168,9 +184,23 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let message =  messages[indexPath.row]
+
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! MessageTableViewCell
-        cell.messageLabel.text = messages[indexPath.row].body
+        cell.messageLabel.text = message.body
         cell.selectionStyle = .none
+
+        if message.sender  == Auth.auth().currentUser?.email {
+            cell.userProfileImage.isHidden  = true
+            cell.currentUserProfileImage.isHidden = false
+            cell.containerView.backgroundColor = UIColor(named: K.Colors.lightBlue)
+            cell.messageLabel.textColor = UIColor(named: K.Colors.blue)
+        } else {
+            cell.userProfileImage.isHidden  = false
+            cell.currentUserProfileImage.isHidden = true
+            cell.containerView.backgroundColor = UIColor(named: K.Colors.blue)
+            cell.messageLabel.textColor = UIColor(named: K.Colors.lightBlue)
+        }
         return cell
     }
 }

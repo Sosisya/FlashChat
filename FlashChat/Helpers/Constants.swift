@@ -17,6 +17,9 @@ struct K {
     struct Images {
         static let exitImage = "rectangle.portrait.and.arrow.right"
         static let sendImage = "paperplane.fill"
+        static let currentUserProfileImage = "me"
+        static let otherUserProfileImage = "you"
+
     }
 
     struct Buttons {
