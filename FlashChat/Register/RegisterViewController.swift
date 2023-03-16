@@ -51,6 +51,7 @@ class RegisterViewController: UIViewController {
         setupLayout()
         setupConstraints()
         cofigureButton()
+        navigationController?.navigationBar.tintColor = UIColor(named: K.Colors.blue)
     }
 }
 
