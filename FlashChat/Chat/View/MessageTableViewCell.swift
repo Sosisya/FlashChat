@@ -8,7 +8,6 @@
 import UIKit
 
 class MessageTableViewCell: UITableViewCell {
-
     let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +20,6 @@ class MessageTableViewCell: UITableViewCell {
     let messageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Message"
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.numberOfLines = 0

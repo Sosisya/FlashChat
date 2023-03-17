@@ -2,7 +2,6 @@ import UIKit
 import CLTypingLabel
 
 class WelcomeViewController: UIViewController {
-
     private let welcomeTitleLabel: CLTypingLabel = {
         let label = CLTypingLabel()
         label.translatesAutoresizingMaskIntoConstraints = false

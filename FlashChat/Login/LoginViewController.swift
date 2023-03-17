@@ -9,7 +9,6 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
-
     private let emailTextField: UITextField = {
         let textfield = UITextField()
         textfield.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +45,6 @@ class LoginViewController: UIViewController {
         button.layer.masksToBounds = true
         return button
     }()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()

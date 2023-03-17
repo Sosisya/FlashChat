@@ -9,9 +9,7 @@ import UIKit
 import Firebase
 
 class ChatViewController: UIViewController {
-
     let db = Firestore.firestore()
-
     var messages: [Messages] = []
 
     let textFieldView: UIView = {
@@ -110,9 +108,7 @@ extension ChatViewController {
         let exitBarButtonItem = UIBarButtonItem(image: UIImage(systemName: K.Images.exitImage), style: .plain, target: self, action: #selector(onExitButtonClicked))
         navigationItem.rightBarButtonItem = exitBarButtonItem
         navigationItem.hidesBackButton = true
-
         title = K.appName
-
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
         navigationBarAppearance.backgroundColor = UIColor(named: K.Colors.blue)

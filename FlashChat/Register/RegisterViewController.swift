@@ -9,7 +9,6 @@ import UIKit
 import Firebase
 
 class RegisterViewController: UIViewController {
-
     private let emailTextField: UITextField = {
         let textfield = UITextField()
         textfield.translatesAutoresizingMaskIntoConstraints = false

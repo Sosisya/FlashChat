@@ -19,7 +19,6 @@ struct K {
         static let sendImage = "paperplane.fill"
         static let currentUserProfileImage = "me"
         static let otherUserProfileImage = "you"
-
     }
 
     struct Buttons {

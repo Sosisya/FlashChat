@@ -108,18 +108,18 @@
 		8ECF035029BE105500A21A9D /* FlashChat */ = {
 			isa = PBXGroup;
 			children = (
-				8E06772229C10035006367E0 /* Models */,
-				8ECF037629BFA55D00A21A9D /* Helpers */,
 				8ECF035129BE105500A21A9D /* AppDelegate.swift */,
 				8ECF035329BE105500A21A9D /* SceneDelegate.swift */,
-				8ECF036C29BE236F00A21A9D /* Welcome */,
-				8ECF036D29BE237800A21A9D /* Login */,
-				8ECF037029BE238C00A21A9D /* Register */,
-				8ECF036E29BE237D00A21A9D /* Chat */,
 				8ECF035A29BE105600A21A9D /* Assets.xcassets */,
 				8ECF035C29BE105600A21A9D /* LaunchScreen.storyboard */,
 				8ECF035F29BE105600A21A9D /* Info.plist */,
 				8ECF037929BFAA7F00A21A9D /* GoogleService-Info.plist */,
+				8E06772229C10035006367E0 /* Models */,
+				8ECF037629BFA55D00A21A9D /* Helpers */,
+				8ECF036C29BE236F00A21A9D /* Welcome */,
+				8ECF036D29BE237800A21A9D /* Login */,
+				8ECF037029BE238C00A21A9D /* Register */,
+				8ECF036E29BE237D00A21A9D /* Chat */,
 			);
 			path = FlashChat;
 			sourceTree = "<group>";
